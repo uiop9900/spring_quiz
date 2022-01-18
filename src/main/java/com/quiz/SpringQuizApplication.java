@@ -13,7 +13,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 //@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 @SpringBootApplication
-@MapperScan(basePackages = "com.boram_2111015.*")  // mapper scan 추가!!!
+@MapperScan(basePackages = "com.quiz.*")  // mapper scan 추가!!!
 public class SpringQuizApplication {
 
 	public static void main(String[] args) {
