@@ -11,7 +11,9 @@ public class Store {
 	private String businessNumber;
 	private String introduce;
 	private Date createdAt;
-	private Date updatedAt;
+	private Date updatedAt; //반드시 java.util import하기
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -60,7 +62,5 @@ public class Store {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
-	
 	
 }
