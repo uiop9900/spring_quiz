@@ -20,3 +20,22 @@
 			`id` = #{id}
  	</select>
  </mapper>
+ 
+ <mapper namespace="com.quiz.lesson03.dao.RealEstateDAO">
+ 	<select id="seletrealEstate" parameterType="Integer" resultType="com.quiz.lesson03.model.realEstate">
+ 		SELECT
+			`id`
+			, `realtorId`
+			, `address` 
+			, `area` 
+			, `type` 
+			, `price` 
+			, `rentPrice`
+			, `createdAt`
+			, `updatedAt`
+ 		FROM
+ 			`real_estate`
+		WHERE
+			`rentPrice` < #{rentPrice}
+ 	</select>
+ </mapper>
