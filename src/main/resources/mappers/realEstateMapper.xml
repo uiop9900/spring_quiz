@@ -19,11 +19,9 @@
 		WHERE
 			`id` = #{id}
  	</select>
- </mapper>
- 
- <mapper namespace="com.quiz.lesson03.dao.RealEstateDAO">
+
  	<select id="seletrealEstate" parameterType="Integer" resultType="com.quiz.lesson03.model.realEstate">
- 		SELECT
+ 		<![CDATA[SELECT
 			`id`
 			, `realtorId`
 			, `address` 
@@ -36,6 +34,6 @@
  		FROM
  			`real_estate`
 		WHERE
-			`rentPrice` < #{rentPrice}
+			`rentPrice` < #{rentPrice}]]>
  	</select>
  </mapper>
