@@ -20,6 +20,10 @@ public class RealEstateRestController {
 			@RequestParam(value="id") int id
 			) {
 		return realEstateBO.getRealEstate(id); 
-		
 	}
+	
+	
+	
+	
+	
 }
