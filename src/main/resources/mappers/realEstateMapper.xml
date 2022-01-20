@@ -19,4 +19,21 @@
 		WHERE
 			`id` = #{id}
  	</select>
+
+ 	<select id="seletrealEstate" parameterType="Integer" resultType="com.quiz.lesson03.model.realEstate">
+ 		<![CDATA[SELECT
+			`id`
+			, `realtorId`
+			, `address` 
+			, `area` 
+			, `type` 
+			, `price` 
+			, `rentPrice`
+			, `createdAt`
+			, `updatedAt`
+ 		FROM
+ 			`real_estate`
+		WHERE
+			`rentPrice` < #{rentPrice}]]>
+ 	</select>
  </mapper>

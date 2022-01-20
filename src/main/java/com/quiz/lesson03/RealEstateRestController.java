@@ -23,7 +23,19 @@ public class RealEstateRestController {
 	}
 	
 	
+<<<<<<< .merge_file_a09108
 	
+=======
+	@Autowired
+	private RealEstateBO realEstateBO2;
+	
+	@RequestMapping("/2")
+	public realEstate quiz01_2(
+			@RequestParam(value="rentPrice", required=false) Integer rentPrice
+			) {
+		return realEstateBO2.getRealEstate(rentPrice);
+	}
+>>>>>>> .merge_file_a02516
 	
 	
 }

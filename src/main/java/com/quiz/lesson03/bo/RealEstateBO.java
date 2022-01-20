@@ -15,4 +15,11 @@ public class RealEstateBO {
 	public realEstate getRealEstate(int id) {
 		return realEstateDAO.selectrealEstate(id);
 	}
+	
+	
+	@Autowired
+	private RealEstateDAO realEstateDAO2;
+	private realEstate getRealEstate(Integer rentPrice) {
+		return realEstateDAO2.selectrealEstate(rentPrice);
+	}
 }
