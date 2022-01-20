@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
- <mapper namespace="com.quiz.lesson03.dao.RealEstateDAO">
- 	<select id="selectrealEstate" parameterType="int" resultType="com.quiz.lesson03.model.realEstate">
+ <mapper namespace="com.quiz.lesson03.dao.RealEstateDAO"><!-- parameter하나일때는 굳이 parameterType안해줘도됨 -->
+ 	<select id="selectrealEstateById" parameterType="int" resultType="com.quiz.lesson03.model.realEstate">
  		SELECT
 			`id`
 			, `realtorId`
@@ -20,8 +20,8 @@
 			`id` = #{id}
  	</select>
 
- 	<select id="seletrealEstate" parameterType="Integer" resultType="com.quiz.lesson03.model.realEstate">
- 		<![CDATA[SELECT
+ 	<select id="seletrealEstateListByRentPrice" parameterType="int" resultType="com.quiz.lesson03.model.realEstate"><!-- 하나의 행에 대한 타입이라 실제로는 list로 반환하지만 class명을 넣으면 된다. -->
+ 		SELECT
 			`id`
 			, `realtorId`
 			, `address` 
@@ -34,6 +34,54 @@
  		FROM
  			`real_estate`
 		WHERE
-			`rentPrice` < #{rentPrice}]]>
- 	</select>
+			`rentPrice` &lt; #{rentPrice}
+ 	</select><!-- 태그의 꺽새라고 인식해서 <가 되지않는다. -->
+ 	
+ 	
+ 	 <select id="selectEstateListByAreaPrice" parameterType="Map" resultType="com.quiz.lesson03.model.realEstate"> <!-- 그래서 여러개가 넘어오면, 넘어온 paraType이 map이 된다. -->
+ 		SELECT
+			`id`
+			, `realtorId`
+			, `address` 
+			, `area` 
+			, `type` 
+			, `price` 
+			, `rentPrice`
+			, `createdAt`
+			, `updatedAt`
+ 		FROM
+ 			`real_estate`
+		WHERE
+		<![CDATA[
+			`type` = '매매' 
+			AND	`area` >= #{area}
+			AND	`price` <= #{price}
+		order by
+			`id` desc	
+		]]>
+ 	</select><!-- 따로 para를 받지는 않지만 type은 여기서 그냥 걸러준다. -->
+ 	
+ 	<insert id="insertRealEstate" parameterType="com.quiz.lesson03.model.realEstate">
+ 		INSERT INTO `real_estate`
+ 		(
+ 			`realtorId`
+			, `address` 
+			, `area` 
+			, `type` 
+			, `price` 
+			, `createdAt`
+			, `updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{realtorId}
+ 			, #{address}	
+ 			, #{area}	
+ 			, #{type}	
+ 			, #{price}	
+ 			, NOW()
+ 			, NOW()
+ 		)
+ 	</insert>
+ 	
  </mapper>
