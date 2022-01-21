@@ -31,8 +31,21 @@ public class RealEstateBO {
 		return realEstateDAO.selectEstateListByAreaPrice(area, price); //자동완성시 input값이 잘 못 채워질수있기때문에 꼭 본인이 쓰면서 확인한다.
 	}
 	
-	public int addRealEstate(realEstate realestate) { //성공한 열의 개수 반환
+	public int addRealEstate(realEstate realestate) { //성공한 열의 개수 반환, 원래는 void로 한다.(insert하고 끝)
 		return realEstateDAO.insertRealEstate(realestate);
 	}
 	
+	//오버로딩 가능
+	public int addRealEstate(int realtorId, String address, int area, String type, int price, Integer rentPrice) {
+		return realEstateDAO.insertRealEstateAsField(realtorId, address, area, type, price, rentPrice);
+	}
+	
+	public int updateRealEstateById(int id, String type, int price) {
+		return realEstateDAO.updateRealEstateById(id, type, price);
+	}
+	
+	public int deleteRealEstateById(int id) {
+		return realEstateDAO.deleteRealEstateById(id);
+	}
+
 }

@@ -19,4 +19,21 @@ public interface RealEstateDAO {
 	//@Param("key") value
 
 	public int insertRealEstate(realEstate realestate); 
+	
+	
+	public int insertRealEstateAsField(
+			@Param("realtorId") int realtorId, 
+			@Param("address") String address, 
+			@Param("area") int area, 
+			@Param("type") String type, 
+			@Param("price") int price, 
+			@Param("rentPrice") Integer rentPrice);
+	
+	public int updateRealEstateById(
+			@Param("id") int id, 
+			@Param("type") String type, 
+			@Param("price") int price);
+
+	public int deleteRealEstateById(int id); 
+	
 }
