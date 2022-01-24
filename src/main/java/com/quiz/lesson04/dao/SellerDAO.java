@@ -14,4 +14,6 @@ public interface SellerDAO {
 	
 	
 	public Seller selectLastSeller();
+	
+	public Seller getSellerById(Integer id);
 }

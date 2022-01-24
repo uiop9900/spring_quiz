@@ -18,4 +18,8 @@ public class SellerBO {
 	public Seller getLastSeller() {
 		return sellerDAO.selectLastSeller();
 	}
+	
+	public Seller getSellerById(Integer id) {
+		return sellerDAO.getSellerById(id);
+	}
 }

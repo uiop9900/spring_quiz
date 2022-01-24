@@ -42,13 +42,16 @@ public class SellerController {
 	//http://localhost/lesson04/quiz01/seller_info
 	@RequestMapping("/seller_info")
 	public String seller_info(
-			//@ModelAttribute Id id,//class생성
+			@RequestParam(value="id", required=false) Integer id,
 			Model model) { //select문
 		
-		Seller lastSeller = sellerBO.getLastSeller();
-		
-		model.addAttribute("result", lastSeller);
-		model.addAttribute("id", id);
+		if (id == null) {
+			Seller lastSeller = sellerBO.getLastSeller();
+			model.addAttribute("result", lastSeller);
+		} else {
+			Seller sellerById = sellerBO.getSellerById(id);
+			model.addAttribute("result", sellerById);
+		}
 		
 		return "lesson04/lastSeller";
 	}
