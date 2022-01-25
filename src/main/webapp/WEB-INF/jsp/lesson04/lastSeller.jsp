@@ -17,12 +17,12 @@
 	<div class="container">
 		<h1><b>판매자 정보</b></h1>
 		<div>
-			<img src="${result.profileImageUrl}" alt="셀러 사진">
+			<img src="${result.profileImageUrl}" alt="판매자 프로필 사진" width="300">
 		</div>
-		<div class="display-4">
+		<div class="display-3">
 			${result.nickname}
 		</div>
-		<h2 class="font-weight-bold text-warning">
+		<h2 class="display-4 font-weight-bold text-warning">
 			${result.temperature}
 		</h2>
 				
