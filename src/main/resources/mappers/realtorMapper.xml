@@ -4,11 +4,10 @@
  
  <mapper namespace="com.quiz.lesson04.dao.RealtorDAO">
  	<insert id="insertRealtor" parameterType="com.quiz.lesson04.model.Realtor"
- 	useGenerateKeys="true" keyProperty="id">
+ 	useGeneratedKeys="true" keyProperty="id">
  	INSERT INTO `realtor`
  	(
- 		`id`
- 		, `office`
+ 		 `office`
 		, `phoneNumber`
 		, `address`
 		, `grade`
@@ -27,4 +26,18 @@
  	)
  	</insert>
  
+ 	<select id="selectRealtorById" parameterType="int" resultType="com.quiz.lesson04.model.Realtor">
+ 		SELECT 
+	 		`id`
+	 		, `office`
+			, `phoneNumber`
+			, `address`
+			, `grade`
+			, `createdAt`
+			, `updatedAt`
+		FROM 
+			`realtor`
+		WHERE
+			`id` = #{id}
+ 	</select>
  </mapper>

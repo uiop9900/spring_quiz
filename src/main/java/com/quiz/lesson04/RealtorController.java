@@ -2,6 +2,7 @@ package com.quiz.lesson04;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,16 +22,23 @@ public class RealtorController {
 		return "lesson04/addRealtor";
 	}
 	
-	//http://localhost/lesson04/quiz02/add_realtor
+	//http://localhost/lesson04/quiz02/add_realtor 
 	@PostMapping("/lesson04/quiz02/add_realtor")
 	public String addRealtor(
-			@ModelAttribute Realtor realtor) { 
+			@ModelAttribute Realtor realtor,
+			Model model
+			) { 
 		
 		
-		// insert할것임 
+		// insert 
 		realtorBO.addRealtor(realtor); 
 		
+		// select
+		Realtor result = realtorBO.getRealtorById(realtor.getId());
 		
-		return "";
+		// view에서 참조 가능
+		model.addAttribute("result", result);
+		
+		return "lesson04/afterAddRealtor";
 	}
 }

@@ -15,4 +15,8 @@ public class RealtorBO {
 	public void addRealtor(Realtor realtor) {
 		realtorDAO.insertRealtor(realtor);
 	}
+	
+	public Realtor getRealtorById(int id) {
+		return realtorDAO.selectRealtorById(id);
+	}
 }
