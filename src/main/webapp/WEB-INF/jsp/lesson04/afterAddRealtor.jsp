@@ -16,7 +16,7 @@
 <body>
 	<div class="container">
 		<h1>공인중개사 정보</h1>
-		<table class="table table-striped">
+		<table class="table table-striped"><!-- 모든 필드가 쓰이지않아도 일단 모든 필드를 가지고 오는게 관례적이다. 일단 다 가지고 오고 그 안에서 뽑아서 쓴다. join은 BO에서, where까지는 그냥 한다 -->
 			<tr>
 				<th>ID</th>
 				<td>${result.id}</td>
@@ -36,6 +36,14 @@
 			<tr>
 				<th>등급</th>
 				<td>${result.grade}</td>
+			</tr>
+			<tr>
+				<th>생성일</th>
+				<td>${result.createdAt}</td>
+			</tr>
+			<tr>
+				<th>수정일</th>
+				<td>${result.updatedAt}</td>
 			</tr>
 		</table>
 	</div>

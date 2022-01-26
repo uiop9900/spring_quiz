@@ -16,7 +16,7 @@ public class RealtorBO {
 		realtorDAO.insertRealtor(realtor);
 	}
 	
-	public Realtor getRealtorById(int id) {
+	public Realtor getRealtorById(int id) { //bo의 입장에서는 id는 필수값이다 -> int
 		return realtorDAO.selectRealtorById(id);
 	}
 }

@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?><!-- 서버키면 모든 xml들을 살펴보고 들어온다. 그렇기에 뼈대(mapper)까지는 만들어줘야 에러가 안난다. -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="com.quiz.lesson04.dao.RealtorDAO">
  	<insert id="insertRealtor" parameterType="com.quiz.lesson04.model.Realtor"
- 	useGeneratedKeys="true" keyProperty="id">
+ 	useGeneratedKeys="true" keyProperty="id"><!-- last_insert_id() 마지막에 들어온 키값을 변환 + 로그인된 사용자를 구분하기 때문에 이 사용자의 마지막 활동을 감지하기때문에
+ 	동시에 같은 사람들이 가입해도 내가 inseret한 정보의 id를 반환한다. -->
  	INSERT INTO `realtor`
  	(
  		 `office`
@@ -36,8 +37,8 @@
 			, `createdAt`
 			, `updatedAt`
 		FROM 
-			`realtor`
+			`realtor` <!-- ${tableName}, order by 의 DESC, ASC를 정할때 ${sort} 하면 ''가 안들어가서 괜찮음, ''들어가는 #{}은 에러생김 -->
 		WHERE
-			`id` = #{id}
+			`id` = #{id} <!-- #{}:' ' 로 치환이 된다. / ${}: ' '가 안붙는 상태로 들어간다(숫자면 괜찮으나 String은 에러발생).  테이블명이 바뀔수도 있을때 ${}을 쓴다. -->
  	</select>
  </mapper>

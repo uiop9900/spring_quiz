@@ -19,7 +19,7 @@
 	<form method="post" action="/lesson04/quiz02/add_realtor">
 		<div class="form-group">
 			<label for="office"><b>상호명</b></label>
-			<input type="text" id="office" name="office" class="form-control col-5" placeholder="상호명을 입력하세요"> 
+			<input type="text" id="office" name="office" class="form-control col-5" placeholder="상호명을 입력하세요"> <!-- 여기서 name태그의 값이 넘어간다 -->
 		</div>
 		<div class="form-group">
 			<label for="phoneNumber"><b>전화번호</b></label>
