@@ -22,6 +22,12 @@ public class Lesson05Quiz03Controller {
 		candidates.add(173942); 
 		candidates.add(563057); 
 		
+		//총 득표수 구하는 로직: 원래는 BO에서 하는게 맞다.- 로직을 어디에 두는 지 중요하다. 이런 계산 로직은 서버에서 하는걸로.
+		int totalCount = 0;
+		for(Integer candidate : candidates) {
+			totalCount += candidate;
+		}
+		
 		//3-2
 		List<Map<String, Object>> cardBills = new ArrayList<>();
 
@@ -46,12 +52,15 @@ public class Lesson05Quiz03Controller {
 		cardBill.put("installment", "일시불");
 		cardBills.add(cardBill);
 		
+		// 데이트 객체 생성
 		Date date = new Date();
 		
-		
+		//3-1
 		model.addAttribute("candidates", candidates);
-		model.addAttribute("cardBills", cardBills);
+		model.addAttribute("totalCount", totalCount);
+		//3-2
 		model.addAttribute("date", date);
+		model.addAttribute("cardBills", cardBills);
 		
 		
 		return "lesson05/quiz03";

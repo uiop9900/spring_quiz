@@ -18,6 +18,8 @@
 
 <body>
 	<div class="container">
+		<img src="/images/sunny.jpg" ><%--static까지는 자동으로 알기때문에 그 아래부터 절대경로 --%>
+	
 	
 	<h1>1.후보자 득표율</h1>
 	<table class="table text-center">
@@ -32,8 +34,12 @@
 			<c:forEach var="candidate" items="${candidates}" varStatus="status">
 				<tr>
 					<td>${status.count}</td>
-					<td>${candidate}</td>
-					<td><fmt:formatNumber value="${candidate / 1000000 }" type="percent"/></td>
+					<td>
+						<fmt:formatNumber value="${candidate}" type="number"/>
+					</td>
+					<td>
+					<fmt:formatNumber value="${candidate / totalCount}" type="percent"/>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>		
@@ -57,7 +63,7 @@
 					<td>${cardBill.store}</td>
 					<td><fmt:formatNumber value="${cardBill.pay}" type="currency"/></td>
 					<td>
-						<fmt:parseDate value="${cardBill.date}" pattern="yyyy-MM-dd" var="dateObj"/>
+						<fmt:parseDate value="${cardBill.date}" pattern="yyyy-MM-dd" var="dateObj"/> <%--String -> 데이트 객체 -> 내가 원하는 Date형식의 String --%>
 						<fmt:formatDate value="${dateObj}" pattern="yyyy년 MM월 dd일"/>
 					</td>
 					<td>${cardBill.installment}</td>
