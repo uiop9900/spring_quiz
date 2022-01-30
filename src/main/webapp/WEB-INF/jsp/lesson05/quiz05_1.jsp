@@ -21,27 +21,81 @@
 </head>
 <body>
 	<div id="wrap">
-		<div class="container d-flex">
-			<nav class="bg-danger col-3">
-				<header class="bg-warning">
+		<div class="container">
+		<%--왼쪽화면 --%>
+			<div class="d-flex">
+				<nav class="col-2">
+					<header>
+						 <div class="d-flex justify-content-center">
+							<div>
+								<img src="/images/기상청.png" alt="기상청로고" width="50">
+							</div>
+							<div class="logo">기상청</div>
+						</div>	
+					</header>
+					<ul class="nav flex-column">
+						<li class="nav-item"><a class="nav-link" href="#">날씨</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">날씨입력</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">테마날씨</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">관측 기후</a></li>
+					</ul>
+				</nav>
+				<%--오른쪽 화면 --%>
+				<section class="col-10 ml-4">
+					<h3>과거 날씨</h3>
+					<table class="table text-center">
+						<thead>
+							<tr>
+								<th>날짜</th>
+								<th>날씨</th>
+								<th>기온</th>
+								<th>강수량</th>
+								<th>미세먼지</th>
+								<th>풍속</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="weather" items="${weatherhistory}">
+							<tr>
+								<td>${weather.date}</td>
+								<td>
+								<%--기온에 따른 사진 삽입 --%>
+								<c:choose>
+									<c:when test="${weather.weather == '맑음'}" >
+										<img src="/images/sunny.jpg" alt="날씨 기호">
+									</c:when>
+									<c:when test="${weather.weather == '비'}" >
+										<img src="/images/rainy.jpg" alt="날씨 기호">
+									</c:when>
+									<c:when test="${weather.weather == '구름조금'}" >
+										<img src="/images/partlyCloudy.jpg" alt="날씨 기호">
+									</c:when>
+									<c:when test="${weather.weather == '흐림'}" >
+										<img src="/images/cloudy.jpg" alt="날씨 기호">
+									</c:when>
+								</c:choose>
+								</td>
+								<td>${weather.temperatures}</td>
+								<td>${weather.precipitation}</td>
+								<td>${weather.microDust}</td>
+								<td>${weather.windSpeed}</td>
+							</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</section>
+			</div>
+			<footer>
+				<div class="d-flex">
 					<div>
-						<img src="/images/기상청.jpg" alt="기상청로고" width="50">
-						<span>기상청</span>
+						<img src="/images/footer.logo.jpg" alt="기상청 로고" width="200">
 					</div>
-				</header>
-				<ul class="nav flex-column">
-					<li class="nav-item"><a class="nav-link" href="#">날씨</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">날씨입력</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">테마날씨</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">관측 기후</a></li>
-				</ul>
-			</nav>
-			<section class="bg-secondary col-9">
-				<h3>과거 날씨</h3>
-				<table>
-				
-				</table>
-			</section>
+					<div class="mt-3">
+						<span>(07062) 서울시 동작구 여의대방로 16길 61</span><br>
+						<span>CopyRight@2022 KMA. All Rights RESERVED.</span>
+					</div>
+				</div>
+			</footer>
 		</div>
 	</div>
 	

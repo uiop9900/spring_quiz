@@ -1,7 +1,9 @@
 @charset "UTF-8";
 
-body {height: 500px; background-color: #000;}
-nav {height: 500px;}
-section {height: 500px;}
+nav {background-color: #4287f5;}
+header{height:80px;}
 
-header{height:100px;}
+header .logo{color: white; font-size: 25px; font-weight: bold; margin-top:5px;}
+.nav-link {text-decoration: none; color: white; font-weight: bold;}
+
+footer span {color: #3b3f47;}
