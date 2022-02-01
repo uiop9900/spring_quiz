@@ -25,7 +25,13 @@ public class Lesson05Quiz05Controller {
 		
 		model.addAttribute("weatherhistory", weatherhistory);
 		
-		return "lesson05/quiz05_1";
+		return "lesson05/quiz05_template";
+	}
+	
+	// insert 화면 
+	@RequestMapping("/lesson05/quiz05/2")
+	public String quiz05_insert() {
+		return "lesson05/quiz05_insert";
 	}
 	
 	

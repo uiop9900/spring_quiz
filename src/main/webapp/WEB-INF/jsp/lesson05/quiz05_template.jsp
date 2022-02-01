@@ -22,8 +22,8 @@
 <body>
 	<div id="wrap">
 		<div class="container">
-		<%--왼쪽화면 --%>
 			<div class="d-flex">
+				<%--왼쪽 menu --%>
 				<nav class="col-2">
 					<header>
 						 <div class="d-flex justify-content-center">
@@ -40,51 +40,53 @@
 						<li class="nav-item"><a class="nav-link" href="#">관측 기후</a></li>
 					</ul>
 				</nav>
+
 				<%--오른쪽 화면 --%>
 				<section class="col-10 ml-4">
-					<h3>과거 날씨</h3>
-					<table class="table text-center">
-						<thead>
-							<tr>
-								<th>날짜</th>
-								<th>날씨</th>
-								<th>기온</th>
-								<th>강수량</th>
-								<th>미세먼지</th>
-								<th>풍속</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="weather" items="${weatherhistory}">
-							<tr>
-								<td>${weather.date}</td>
-								<td>
-								<%--기온에 따른 사진 삽입 --%>
-								<c:choose>
-									<c:when test="${weather.weather == '맑음'}" >
-										<img src="/images/sunny.jpg" alt="날씨 기호">
-									</c:when>
-									<c:when test="${weather.weather == '비'}" >
+				<h3>과거 날씨</h3>
+				<table class="table text-center">
+					<thead>
+						<tr>
+							<th>날짜</th>
+							<th>날씨</th>
+							<th>기온</th>
+							<th>강수량</th>
+							<th>미세먼지</th>
+							<th>풍속</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="weather" items="${weatherhistory}">
+						<tr>								<td>${weather.date}</td>
+							<td>
+							<%--기온에 따른 사진 삽입 --%>
+							<c:choose>
+								<c:when test="${weather.weather == '맑음'}" >
+									<img src="/images/sunny.jpg" alt="날씨 기호">
+								</c:when>
+								<c:when test="${weather.weather == '비'}" >
 										<img src="/images/rainy.jpg" alt="날씨 기호">
-									</c:when>
-									<c:when test="${weather.weather == '구름조금'}" >
-										<img src="/images/partlyCloudy.jpg" alt="날씨 기호">
-									</c:when>
-									<c:when test="${weather.weather == '흐림'}" >
-										<img src="/images/cloudy.jpg" alt="날씨 기호">
-									</c:when>
-								</c:choose>
-								</td>
-								<td>${weather.temperatures}</td>
-								<td>${weather.precipitation}</td>
-								<td>${weather.microDust}</td>
-								<td>${weather.windSpeed}</td>
-							</tr>
-							</c:forEach>
-						</tbody>
-					</table>
+								</c:when>
+								<c:when test="${weather.weather == '구름조금'}" >
+									<img src="/images/partlyCloudy.jpg" alt="날씨 기호">
+								</c:when>
+								<c:when test="${weather.weather == '흐림'}" >
+									<img src="/images/cloudy.jpg" alt="날씨 기호">
+								</c:when>
+							</c:choose>
+							</td>
+							<td>${weather.temperatures}</td>
+							<td>${weather.precipitation}</td>
+							<td>${weather.microDust}</td>
+							<td>${weather.windSpeed}</td>
+						</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 				</section>
 			</div>
+			
+			<%--아래 footer --%>
 			<footer>
 				<div class="d-flex">
 					<div>
