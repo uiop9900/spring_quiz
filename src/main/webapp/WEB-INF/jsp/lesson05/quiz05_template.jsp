@@ -34,8 +34,8 @@
 						</div>	
 					</header>
 					<ul class="nav flex-column">
-						<li class="nav-item"><a class="nav-link" href="#">날씨</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">날씨입력</a></li>
+						<li class="nav-item"><a class="nav-link" href="/lesson05/quiz05/1">날씨</a></li>
+						<li class="nav-item"><a class="nav-link" href="/lesson05/quiz05/2">날씨입력</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">테마날씨</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">관측 기후</a></li>
 					</ul>
@@ -87,6 +87,7 @@
 			</div>
 			
 			<%--아래 footer --%>
+			<hr>
 			<footer>
 				<div class="d-flex">
 					<div>

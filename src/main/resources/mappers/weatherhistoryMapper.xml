@@ -17,4 +17,28 @@
 		FROM 
 			`weatherhistory`
  	</select>
+ 	
+ 	<insert id="insertWeatherhistory" parameterType="com.quiz.lesson05.model.Weatherhistory">
+ 		INSERT INTO `weatherhistory`
+		(	 `date`
+			, `weather`
+			, `temperatures`
+			, `precipitation`
+			, `microDust`
+			, `windSpeed`
+			, `createdAt`
+			, `updatedAt`
+ 		)
+ 		VALUES
+ 		(	#{date}
+ 			,#{weather}
+ 			,#{temperatures}
+ 			,#{precipitation}
+ 			,#{microDust}
+ 			,#{windSpeed}
+ 			,NOW()
+ 			,NOW()
+ 		)
+ 		
+ 	</insert>
  </mapper>
