@@ -22,9 +22,13 @@ public class Lesson05Quiz06Controller {
 		
 		//select해서 view로 보내기
 		List<Store> storeList = storeBO.getStoreList();
-		
 		model.addAttribute("storeList", storeList);
-		
 		return "lesson05/quiz06_template";
+	}
+	
+	@RequestMapping("/lesson05/quiz06_review")
+	public String quiz06_review() { //new_review의 내용을 가져온다. 그래서 쿼리로도 i
+		@getParam("storeId") int storeId,
+		return "lesson05/quiz06_review";
 	}
 }

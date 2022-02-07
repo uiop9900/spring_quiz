@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,26 +23,6 @@
 		
 		<div class="display-4 mt-2">우리동네 가게</div>
 		
-			<form method="get" action="/lesson05/quiz06_review">
-			<c:forEach var="store" items="${storeList}">
-				<a href="/lesson05/quiz06_review?storeId=${store.id}&storeName=${store.name}">
-					<section id="storeName" name="${store.name}">
-						<h4 class="font-weight-bold">${store.name}</h4>
-						<div id="storeId">전화 번호: ${store.phoneNumber}</div>
-						<div>주소: ${store.address}</div>
-					</section>
-				</a>
-			</c:forEach>
-			</form>
-			
-			
-		<footer>
-			<hr>
-			<div class="footer-text1">(주) 우와한형제</div>
-			<div class="footer-text2">고객센터: 1500-1500</div>
-		</footer>
 	</div>
-
-
 </body>
 </html>

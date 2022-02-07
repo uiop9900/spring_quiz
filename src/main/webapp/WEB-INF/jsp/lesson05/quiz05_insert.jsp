@@ -43,7 +43,7 @@
 		
 			<%--오른쪽 content --%>
 			<section class="ml-4">
-				<h3>날씨입력</h3>
+				<h3>날씨입력</h3><%--누르면 그 정보를 들고 넘어가야 하니까 form태그 사용한다. --%>
 				<form method="post" action="/lesson05/quiz05_insert">
 				<!--첫 줄 -->
 				<div class="d-flex ml-4 justify-content-around align-items-center">
@@ -120,11 +120,11 @@
 	
 	
 	<script>
-		$(document).ready(function(e){
+		$(document).ready(function(e){//input에 들어가는 것이니까 input태그에서 id를 만들어야 한다.
 			
 			$("#date").datepicker({
 				changeMonth: true
-				, dateFormat: "yy-mm-dd"
+				, dateFormat: "yy-mm-dd" // 2022-02-07
 			});
 			
 			$("#join").on("click", function(e){

@@ -12,14 +12,14 @@ import com.quiz.lesson05.model.Weatherhistory;
 public class WeatherhistoryBO {
 	
 	@Autowired
-	private WeatherhistoryDAO weatherhistoryDAO;
+	private WeatherhistoryDAO weatherhistoryDAO;//이름 길어도 관례적으로 다 써준다. 함부로 축약 X
 	
-	public List<Weatherhistory> getweatherhistory() {
-		return weatherhistoryDAO.selectweatherhistory();
+	public List<Weatherhistory> getweatherhistoryList() { //list이면 뒤에 list로 붙여주기
+		return weatherhistoryDAO.selectweatherhistoryList();
 	}
 	
-	public void addWeatherhistory(Weatherhistory weatherhistory) {
-		weatherhistoryDAO.insertWeatherhistory(weatherhistory);
+	public void addWeatherhistory(String date, String weather, String microDust, double temperatures, double precipitation, double windSpeed) {
+		weatherhistoryDAO.insertWeatherhistory(date, weather, microDust, temperatures, precipitation, windSpeed);
 	}
 	
 }
