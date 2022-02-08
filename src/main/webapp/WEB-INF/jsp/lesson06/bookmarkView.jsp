@@ -58,7 +58,7 @@
 				, data: {'name':name, 'url':url}
 				, success: function(data) {
 					alert("성공");
-					location.href='/lesson06/bookmark_add' //여기에서 return해야한다. controller에서 하지말기 Controller에서는그냥 JSon으로
+					location.href='/lesson06/bookmark_add' //여기에서 return해야한다. 
 				}
 				, error: function(e) {
 					alert("error :" + e)

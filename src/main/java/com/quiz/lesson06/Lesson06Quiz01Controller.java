@@ -25,7 +25,7 @@ public class Lesson06Quiz01Controller {
 	}
 	
 	@PostMapping("/lesson06/bookmark_add")
-	public String bookmarkAdd(
+	public void bookmarkAdd(
 			@RequestParam("name") String name,
 			@RequestParam("url") String url,
 			Model model
@@ -37,8 +37,6 @@ public class Lesson06Quiz01Controller {
 		List<Bookmark> bookmark = bookmarkBO.getBookmarkList();
 				
 		model.addAttribute("bookmark", bookmark);
-				
-		return "lesson06/bookmarkAdd_view";
 	}
 		
 
