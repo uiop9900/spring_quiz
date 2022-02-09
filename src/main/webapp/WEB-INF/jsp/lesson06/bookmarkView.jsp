@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>즐겨찾기 추가하기</title>
 
-<!-- bootstrap CDN link -->
+	<!-- bootstrap CDN link -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<!-- Ajax 쓰려면 전체의 jQuery가져와야 한다 -->
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -27,7 +27,7 @@
 			<input type="text" class="form-control" id="url" name="url">
 		</div>
 		
-		<button id="add" class="btn btn-success w-100">추가</button>
+		<button id="add" class="btn btn-success btn-block">추가</button> <%--이 버튼을 <a>로도 만들수있고 그러면 아래에서 e.prevent어쩌구로 남겨놔야 한다. --%>
 	</div>
 	
 	
@@ -35,11 +35,11 @@
 	$(document).ready(function(e){
 		$('#add').on('click', function(e){
 			//alert("클릭");
-			let name = $('#name').val().trim();
+			let name = $('#name').val().trim(); //id로 잡아서 value를 가져오기때문에 name값 굳이 필요없음
 			let url = $('#url').val().trim();
 			
-			if (name == "") {
-				alert("제목을 입력하세요.");
+			if (name.length < 1) {
+				alert("사이트명을 입력하세요.");
 				return;
 			}
 			
@@ -47,20 +47,26 @@
 				alert("주소를 입력하세요.");
 				return
 			}
-			if (!(url.startsWith('http') || url.startsWith('https'))){
-				alert("주소값을 http(s)를 포함해서 넣어주세요.");
+			
+			//http도 아니고 https도 아닐때 -> 둘다 아닐때 and 조건
+			if (url.startsWith('http') == false && url.startsWith('https') == false){
+				alert("주소형식이 잘못되었습니다.");
 				return;
 			}
 			
-			$.ajax({
-				type:'POST'
-				, url:'/lesson06/bookmark_add'
-				, data: {'name':name, 'url':url}
-				, success: function(data) {
-					alert("성공");
-					location.href='/lesson06/bookmark_add' //여기에서 return해야한다. 
+			//서버 호출	
+			$.ajax({ //json모양이지만 object.
+				type:"POST" //큰따옴표
+				, url:"/lesson06/bookmark_add"
+				, data: {'name':name, 'url':url} //json은 아니고 object임
+				, success: function(data) { //반드시 String return: ajax는 무조건 반드시 String 리턴한다. json형태의 string
+					//alert(data.result); //키로 value값을 가져올때
+					if (data.result == "success") { //진짜 성공 (키값으로 부르면)
+						// 목록화면으로 이동
+						location.href="/lesson06/bookmark_list_view" //여기에서 view의 주소값을 입력 -> mapping된 주소 넣어준다.
+					}
 				}
-				, error: function(e) {
+				, error: function(e) { // 파라미터를 3개까지 넣는다.
 					alert("error :" + e)
 				}
 			});
