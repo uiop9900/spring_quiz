@@ -21,4 +21,13 @@ public class BookMarkBO {
 	public List<Bookmark> getBookmarkList() {
 		return bookmarkDAO.selectBookmarkList();
 	}
+	
+	public Bookmark getBookmarkByUrl(String url) { //단, bookmark의 리스트가 다 다른값을 가진다. (중복된 url은 없다)
+		return bookmarkDAO.getBookmarkByUrl(url);
+	}
+	
+	public void deleteBookmark(int id) {
+		bookmarkDAO.deleteBookmark(id);
+	}
+	
 }

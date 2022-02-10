@@ -31,10 +31,37 @@
 					<td>${bookmark.id}</td>
 					<td>${bookmark.name}</td>
 					<td>${bookmark.url}</td>
+					<td>
+						<button type="button" class="btn btn-danger deleteBtn" value="${bookmark.id}">삭제</button>
+					</td>
 				</tr>
 				</c:forEach>			
 			</tbody>
 		</table>
 	</div>
+<script>
+$(document).ready(function(e){
+	
+	$(".deleteBtn").on('click', function(e){
+		let id = $(this).val();
+		alert(id);
+		
+		$.ajax({
+			type:"POST"
+			, url:"/lesson06/bookmark_delete"
+			, data: {'id':id}
+			, success: function(data){
+				if (data.result == 'success'){
+					location.reload();
+				}
+			}
+			, error: function(e){
+				alert("error");
+			}
+		}); 
+		 
+	});
+});
+</script>
 </body>
 </html>

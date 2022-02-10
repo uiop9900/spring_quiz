@@ -15,4 +15,8 @@ public interface BookMarkDAO {
 			@Param("url") String url);
 	
 	public List<Bookmark> selectBookmarkList(); 
+	
+	public Bookmark getBookmarkByUrl(String url) ; 
+	
+	public void deleteBookmark(int id);
 }

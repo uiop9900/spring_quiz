@@ -57,4 +57,41 @@ public class Lesson06Quiz01Controller {
 		return "lesson06/bookmarkAdd";
 	}
 	
+	//주소 중복 확인 - AJAX 통신 호출
+	@PostMapping("/lesson06/bookmark_isDuplicate")
+	@ResponseBody
+	public Map<String, Boolean> isDuplpicate(
+			@RequestParam("url") String url) {
+
+		// DB 중복확인
+		Bookmark bookmark = bookmarkBO.getBookmarkByUrl(url); //중복이면 값이 있고 없으면 null이 담겨있다.
+		
+		
+		Map<String, Boolean> result = new HashMap<>();
+		result.put("result", true);
+		
+		if (bookmark == null) {
+			//중복되지 않음
+			result.put("result", false);
+		}
+		
+		return result;
+	}
+	
+	@PostMapping("/lesson06/bookmark_delete")
+	@ResponseBody
+	public Map<String, String> bookmarkDelete(
+			@RequestParam("id") String id) {
+		
+		int number = Integer.valueOf(id);
+		
+		bookmarkBO.deleteBookmark(number);
+		
+		Map<String, String> result = new HashMap<>();
+		result.put("result", "success");
+		
+		return result;
+	}
+	
+	
 }
