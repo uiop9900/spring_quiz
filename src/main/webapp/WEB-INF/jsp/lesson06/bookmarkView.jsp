@@ -24,7 +24,13 @@
 		
 		<div class="form-group">
 			<label for="url">주소</label>
-			<input type="text" class="form-control" id="url" name="url">
+			<div class="form-inline"> 
+				<input type="text" class="form-control col-10" id="url" name="url">
+				<button type="button" id="duplicationBtn" class="ml-2 btn btn-info">중복확인</button>
+			</div>
+
+		<small id="statusUrl" class="text-danger d-none">중복된 url입니다.</small> <!-- 이번에 Toggle로 할 예정 -->
+		<small id="availableUrlText" class="text-success d-none">저장가능한 url입니다.</small> <!-- 이번에 Toggle로 할 예정 -->
 		</div>
 		
 		<button id="add" class="btn btn-success btn-block">추가</button> <%--이 버튼을 <a>로도 만들수있고 그러면 아래에서 e.prevent어쩌구로 남겨놔야 한다. --%>
@@ -32,7 +38,38 @@
 	
 	
 <script>
-	$(document).ready(function(e){
+	$(document).ready(function(e){ //ajax쓸때는 form태그 지양
+		// 주소 중복 확인
+		$("#duplicationBtn").on('click', function(e){
+			let url = $('#url').val().trim();
+			
+			if (url == "") {
+				alert("검사할 url을 입력해주세요.");
+				return;
+			}
+			
+			//서버 호출해서 확인
+			$.ajax({
+				type:"POST"
+				, url:"/lesson06/bookmark_isDuplicate"
+				, data: {'url':url}
+				, success: function(data) {//성공하면 String이 넘어오는 것 -> object로 알아서 변경하고 받은 값 data를 key값으로 꺼낸다.
+					if (data.result) {//true - 중복인 경우
+						$("#statusUrl").removeClass("d-none");
+						$("#availableUrlText").addClass("d-none");
+						
+					} else {
+						$("#availableUrlText").removeClass("d-none");
+						$("#statusUrl").addClass("d-none");
+					}
+				}
+				, error: function(e){
+					alert("error");
+				}
+			});
+		});
+		
+		//즐겨찾기 추가
 		$('#add').on('click', function(e){
 			//alert("클릭");
 			let name = $('#name').val().trim(); //id로 잡아서 value를 가져오기때문에 name값 굳이 필요없음
@@ -54,6 +91,13 @@
 				return;
 			}
 			
+			// quiz02 - 중복확인 체크 : 초록색글자가 뜨면 저장가능한 걸로 판단
+			if ($("#availableUrlText").hasClass("d-none")) { // -> 초록글자가 가려져 있다. -> 중복값 이거나 아예 검사를 안했다.
+				// 저장가능 URL 문구가 없으면 검사를 다시 해야함
+				alert("다시 중복확인을 해주세요");
+				return;
+			}
+			
 			//서버 호출	
 			$.ajax({ //json모양이지만 object.
 				type:"POST" //큰따옴표
@@ -70,8 +114,8 @@
 					alert("error :" + e)
 				}
 			});
-			
 		});
+		
 		
 	});
 
