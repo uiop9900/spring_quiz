@@ -8,5 +8,7 @@ header {height: 80px; color: white; font-size: 35px; background-color: #0a93a3;
 section {margin-top: 10px; border-style: solid; border-color: #0a93a3; border-radius: 10px; padding: 10px; text-decoration: none; color: #000;}
 #storeName:hover {text-decoration:none; background-color: #0a93a3;}
 		
+#reviewContent {border-style: solid; border-color: #0a93a3; border-radius: 10px; padding: 10px; }
+
 footer .footer-text1 {font-size: 20px;}
 footer .footer-text2 {font-size: 15px; color: #888;}

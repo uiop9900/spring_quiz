@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +22,14 @@
 			<div>배탈의 민족</div>
 		</header>
 		
-		<div class="display-4 mt-2">우리동네 가게</div>
+		<div class="display-4 mt-2">${storeName} - 리뷰</div>
 		
+		<div id="reviewContent">
+			<h3>name</h3>
+		</div>	
+		
+		
+					
 	</div>
 </body>
 </html>

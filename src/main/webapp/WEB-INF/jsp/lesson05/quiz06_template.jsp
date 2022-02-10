@@ -27,7 +27,7 @@
 			<form method="get" action="/lesson05/quiz06_review">
 			<c:forEach var="store" items="${storeList}">
 				<a href="/lesson05/quiz06_review?storeId=${store.id}&storeName=${store.name}">
-					<section id="storeName" name="${store.name}">
+					<section id="storeName">
 						<h4 class="font-weight-bold">${store.name}</h4>
 						<div id="storeId">전화 번호: ${store.phoneNumber}</div>
 						<div>주소: ${store.address}</div>

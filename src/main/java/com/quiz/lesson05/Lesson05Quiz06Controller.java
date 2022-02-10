@@ -2,6 +2,8 @@ package com.quiz.lesson05;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,8 +29,13 @@ public class Lesson05Quiz06Controller {
 	}
 	
 	@RequestMapping("/lesson05/quiz06_review")
-	public String quiz06_review() { //new_review의 내용을 가져온다. 그래서 쿼리로도 i
-		//@getParam("storeId") int storeId,
+	public String quiz06_review(HttpServletRequest request, Model model) {
+		int storeId = Integer.parseInt(request.getParameter("storeId"));
+		String storeName = request.getParameter("storeName");
+		
+		model.addAttribute("storeId", storeId);
+		model.addAttribute("storeName", storeName);
+		
 		return "lesson05/quiz06_review";
 	}
 }
