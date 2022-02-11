@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+nav {height: 45px; background-color: #de7112;}
+nav .nav-link {text-decoration: none; color: white; font-weight: bold;}
+nav .nav-link:hover {font-weight: bold; color:#000;}
+
+img {width: 1110px;}
+
+.bottom_content {height: 200px;}
+.content1 {color: white;  background-color:#ba530f;}
+.content2 {background-color: #de7112;}
+.content3 {color: white; font-size:35px; background-color:#ba530f;}
+
+footer {color: #555; font-size: 13px;}
+
+.bigger_letter {color: white; font-size: 25px; }

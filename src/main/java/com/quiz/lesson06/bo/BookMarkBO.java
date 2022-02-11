@@ -26,8 +26,8 @@ public class BookMarkBO {
 		return bookmarkDAO.getBookmarkByUrl(url);
 	}
 	
-	public void deleteBookmark(int id) {
-		bookmarkDAO.deleteBookmark(id);
+	public int deleteBookmark(int id) {
+		return bookmarkDAO.deleteBookmark(id);
 	}
 	
 }

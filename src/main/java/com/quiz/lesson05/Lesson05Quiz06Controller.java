@@ -33,6 +33,8 @@ public class Lesson05Quiz06Controller {
 		int storeId = Integer.parseInt(request.getParameter("storeId"));
 		String storeName = request.getParameter("storeName");
 		
+		// 그에 맞는 storeId로 select하기
+		
 		model.addAttribute("storeId", storeId);
 		model.addAttribute("storeName", storeName);
 		

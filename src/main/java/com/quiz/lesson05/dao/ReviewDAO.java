@@ -8,5 +8,6 @@ import com.quiz.lesson05.model.Review;
 
 @Repository
 public interface ReviewDAO {
+	
 	public List<Review> selectReviewListByStoreId(int storeId);
 }

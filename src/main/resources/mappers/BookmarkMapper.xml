@@ -45,7 +45,7 @@
  			`url` = #{url}
  	</select>
  	
- 	<delete id="deleteBookmark" parameterType="int">
+ 	<delete id="deleteBookmark" parameterType="int"> 
  		DELETE
  		FROM 
  			`bookmark`

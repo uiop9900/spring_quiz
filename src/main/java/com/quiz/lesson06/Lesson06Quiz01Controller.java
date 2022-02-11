@@ -81,15 +81,17 @@ public class Lesson06Quiz01Controller {
 	@PostMapping("/lesson06/bookmark_delete")
 	@ResponseBody
 	public Map<String, String> bookmarkDelete(
-			@RequestParam("id") String id) {
+			@RequestParam("id") int id) {
 		
-		int number = Integer.valueOf(id);
-		
-		bookmarkBO.deleteBookmark(number);
+		//delete
+		int deleteRowCount = bookmarkBO.deleteBookmark(id);
 		
 		Map<String, String> result = new HashMap<>();
 		result.put("result", "success");
-		
+		if(deleteRowCount < 1 ) { // 삭제안됐다. -> fail임
+			result.put("result", "fail");
+		}
+
 		return result;
 	}
 	

@@ -18,5 +18,5 @@ public interface BookMarkDAO {
 	
 	public Bookmark getBookmarkByUrl(String url) ; 
 	
-	public void deleteBookmark(int id);
+	public int deleteBookmark(int id);
 }
