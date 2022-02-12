@@ -11,6 +11,9 @@ img {width: 1110px;}
 .content2 {background-color: #de7112;}
 .content3 {color: white; font-size:35px; background-color:#ba530f;}
 
+#reserve-box{width: 500px; margin: auto;}
+.reserve-font {font-weight: bold; margin-top: 2px;}
+
 footer {color: #555; font-size: 13px;}
 
 .bigger_letter {color: white; font-size: 25px; }

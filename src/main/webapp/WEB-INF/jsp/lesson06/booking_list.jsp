@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,13 +39,22 @@
 					<c:forEach var="list" items="${bookingList}">
 					<tr>
 						<td>${list.name}</td>
-						<td>${list.date}</td>
+						<td>
+							<fmt:formatDate value="${list.date}" pattern="yyyy년 MM월 dd일" />
+						</td>
 						<td>${list.day}</td>
 						<td>${list.headcount}</td>
 						<td>${list.phoneNumber}</td>
-						<td>${list.state}</td>
+						<c:choose>
+							<c:when test="${list.state == '대기중'}">
+								<td class="text-info">${list.state}</td>
+							</c:when>
+							<c:when test="${list.state == '확정'}">
+								<td class="text-success">${list.state}</td>
+							</c:when>
+						</c:choose>
 						<td>
-							<button type="button" class="btn btn-danger">삭제</button>
+							<button type="button" class="btn btn-danger delBtn" data-booking-id="${list.id}">삭제</button>
 						</td>
 					</tr>
 					</c:forEach>
@@ -54,8 +64,26 @@
 		
 		<c:import url="/WEB-INF/jsp/lesson06/booking_footer.jsp" />
 	</div>
-	
-
-
+<script>
+$(document).ready(function(e){
+	$(".delBtn").on('click', function(e){
+		let id = $(this).data("booking-id");
+		
+		$.ajax({
+			type:"POST"
+			, url:"/booking/delete"
+			, data: {"id":id}
+			, success: function(data){
+				if(data.result == 'success') {
+					location.reload();
+				}
+			}
+			, error: function(e) {
+				alert("error");
+			}
+		});
+	});
+});
+</script>
 </body>
 </html>

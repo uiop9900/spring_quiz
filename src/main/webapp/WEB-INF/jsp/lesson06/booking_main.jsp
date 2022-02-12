@@ -25,9 +25,7 @@
 		<c:import url="/WEB-INF/jsp/lesson06/booking_nav.jsp" />
 		<%--사진 --%>
 		<section>
-			<c:forEach var="number" begin="1" end="4" step="1">
-				<img src="/images/test06_banner${number}.jpg">
-			</c:forEach>
+			<img id="images" src="/images/test06_banner1.jpg" alt="팬션 사진">
 		</section>
 		<%--main의 bottom content --%>
 		<div class="d-flex bottom_content">
@@ -61,7 +59,17 @@
 	
 <script>
 $(document).ready(function(e){
-	//alert("아아");
+	
+	setInterval(function(e){
+		let count = 1;
+		count++;
+		$("#images").attr('src', "/images/test06_banner" + count + ".jpg");
+		if (count == 4) {
+				count = 1;
+			}
+		}
+	}, 3000);
+
 });
 </script>
 </body>
