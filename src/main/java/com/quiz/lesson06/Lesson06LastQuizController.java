@@ -1,6 +1,5 @@
 package com.quiz.lesson06;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +21,7 @@ public class Lesson06LastQuizController {
 	@Autowired
 	private BookingBO bookingBO;
 	
-	//http://localhost/booking/main
+	//main화면(3번) http://localhost/booking/main
 	@RequestMapping("/booking/main")
 	public String bookingMain() {
 		return "lesson06/booking_main";
@@ -79,6 +78,17 @@ public class Lesson06LastQuizController {
 		insertResult.put("result", "success");
 		
 		return insertResult;
+	}
+	
+	@PostMapping("/booking/check_reserve")
+	@ResponseBody
+	public Booking checkReserve(
+			@RequestParam("name") String name,
+			@RequestParam("phoneNumber") String phoneNumber){
+		
+		//db에서 있나 확인 - 있으면 반환
+		Booking bookingReserve = bookingBO.getBookingReserve(name, phoneNumber);
+		return bookingReserve;
 	}
 	
 }

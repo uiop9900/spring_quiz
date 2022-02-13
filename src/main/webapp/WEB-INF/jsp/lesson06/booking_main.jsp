@@ -37,14 +37,14 @@
 				<div class="mt-3 bigger_letter">예약 확인</div>
 				<div class="d-flex">
 					<div class="text-white mt-2 mr-1 ml-5">이름: </div>
-					<div><input type="text" class="form-control"> </div>
+					<div><input type="text" id="name" class="form-control"> </div>
 				</div>
 				<div class="d-flex mt-2">
 					<div class="text-white mt-2 mr-1 ml-3">전화번호: </div>
-					<div><input type="text" class="form-control" placeholder="예) 010-2345-1234"> </div>
+					<div><input type="text" id="phoneNumber" class="form-control" placeholder="예) 010-2345-1234"> </div>
 				</div>
 				<div align="right">
-					<button class="btn btn-success mt-2 b-block">조회하기</button>
+					<button id="checkBtn"class="btn btn-success mt-2 b-block">조회하기</button>
 				</div>
 			</div>
 			<div class="col-4 content3 pt-5">
@@ -59,17 +59,53 @@
 	
 <script>
 $(document).ready(function(e){
-	
-	setInterval(function(e){
-		let count = 1;
-		count++;
-		$("#images").attr('src', "/images/test06_banner" + count + ".jpg");
-		if (count == 4) {
-				count = 1;
+		//3초마다 메인사진 변경
+		let mainImages = ["1.jpg", "2.jpg", "3.jpg", "4.jpg"]; 
+		let imagesIndex = 0;
+		
+		setInterval(function(e){
+			$("#images").attr("src" , "/images/test06_banner" + mainImages[imagesIndex]);
+			imagesIndex++;
+			if (imagesIndex > mainImages.length-1) { //4
+				imagesIndex = 0;
 			}
-		}
-	}, 3000);
+		}, 3000);
 
+		//조회하기
+		$("#checkBtn").on('click', function(e){
+			let name = $("#name").val().trim();
+			let phoneNumber = $("#phoneNumber").val().trim();
+			
+			if (name == "") {
+				alert("이름을 입력해주세요.");
+				return;
+			}
+			if (phoneNumber == "") {
+				alert("전화번호를 입력해주세요.");
+				return;
+			}
+			
+			$.ajax({
+				type: "POST"
+				,url:"/booking/check_reserve"
+				,data: {"name":name, "phoneNumber":phoneNumber}
+				,success: function(data){
+					if(Object.keys(data).length == 0) {
+						alert("예약 내역이 없습니다.");
+					} else {
+						alert("이름: " + data.name
+								 + "\n날짜: " + data.date.substring(0,10)
+								 + "\n일수: " + data.day
+								 + "\n인원: " + data.headcount 
+								 + "\n상태: " + data.state);
+					}
+				}
+				, error: function(e) {
+					alert("error");
+				}
+			});
+
+		});
 });
 </script>
 </body>
