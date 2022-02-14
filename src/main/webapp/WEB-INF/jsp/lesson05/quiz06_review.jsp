@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,11 +24,43 @@
 		</header>
 		
 		<div class="display-4 mt-2">${storeName} - 리뷰</div>
-		
-		<div id="reviewContent">
-			<h3>name</h3>
+		<c:forEach var="review" items="${reviewList}" >
+		<div id="reviewContent" class="mt-2">	
+			<span id="reviewName">${review.userName}</span>
+			<div>
+				<fmt:formatNumber value="${review.point}" type="number"  var="point"/>
+				<c:choose>
+					<c:when test="${review.point.charAt(-1) != 0}" > 
+						<c:set var="point" value="point-0.5" />
+						<c:forEach begin = "1" end="point" step="1">
+							<img src="/images/star-fill.png" alt="별모양" >
+						</c:forEach>
+						<img src="/images/star-half.png" >
+						<c:forEach begin="5" end="point+1" step="-1">
+							<img src="/images/star-empty.png" alt="별모양" >
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<c:forEach begin = "1" end="point" step="1">
+							<img src="/images/star-fill.png" alt="별모양" >
+						</c:forEach>
+						<c:forEach begin="5" end="point" step="-1">
+							<img src="/images/star-empty.png" alt="별모양" >
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+				
+				
+				
+								
+			</div>
+			<div id="reviewDate">
+				<fmt:formatDate value="${review.createdAt}" pattern="yyyy월 MM월 dd일" />
+			</div>
+			<div id="reviewReview">${review.review}</div>
+			<span id="reviewMenu">${review.menu}</span>
 		</div>	
-		
+		</c:forEach>
 		
 					
 	</div>

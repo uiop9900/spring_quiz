@@ -10,5 +10,10 @@ section {margin-top: 10px; border-style: solid; border-color: #0a93a3; border-ra
 		
 #reviewContent {border-style: solid; border-color: #0a93a3; border-radius: 10px; padding: 10px; }
 
+#reviewName {font-size: 20px; font-weight: bold;}
+#reviewDate {font-size: 15px; color: #777; font-weight: bold;}
+#reviewMenu {font-size: 13px; font-weight: bold; background-color: #c9d3d6; border-radius: 5px;}
+
+
 footer .footer-text1 {font-size: 20px;}
 footer .footer-text2 {font-size: 15px; color: #888;}

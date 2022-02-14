@@ -5,7 +5,14 @@
  <mapper namespace="com.quiz.lesson05.dao.ReviewDAO">
 	 <select id="selectReviewListByStoreId" parameterType="int" resultType="com.quiz.lesson05.model.Review" >
 	 	SELECT
-	 	
+		 	`id`
+			,`storeId`
+			,`menu`
+			,`userName`
+			,`point`
+			,`review`
+			,`createdAt`
+			,`updatedAt`
 	 	FROM 
 	 		`new_review`
 	 	WHERE
