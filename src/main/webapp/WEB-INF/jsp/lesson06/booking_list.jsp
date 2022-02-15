@@ -15,7 +15,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-	<link rel="stylesheet" type="text/css" href="/css/Lesson06LastQuiz.css">
+	<link rel="stylesheet" type="text/css" href="/css/Lesson06LastQuiz.css"><%--우리의 css가 제일 아래쪽에 있어야 가장 우선순위로 적용된다 --%>
 </head>
 <body>
 	<div class="container">
@@ -39,22 +39,25 @@
 					<c:forEach var="list" items="${bookingList}">
 					<tr>
 						<td>${list.name}</td>
-						<td>
-							<fmt:formatDate value="${list.date}" pattern="yyyy년 MM월 dd일" />
+						<td><%--type이 date type이기때문에 이걸 형변환해야 한다. --%>
+							<fmt:formatDate value="${list.date}" pattern="yyyy년 M월 d일" /><%--서버는 온전한 원본데이터를 주고 그걸 가공하는건 view가 하는게 좋다.  --%>
 						</td>
 						<td>${list.day}</td>
 						<td>${list.headcount}</td>
 						<td>${list.phoneNumber}</td>
 						<c:choose>
 							<c:when test="${list.state == '대기중'}">
-								<td class="text-info">${list.state}</td>
+								<td class="text-info">${list.state}</td> <%--td를 공통으로 빼고 span태그로 넣어도 된다. --%>
 							</c:when>
 							<c:when test="${list.state == '확정'}">
 								<td class="text-success">${list.state}</td>
 							</c:when>
+							<c:when test="${list.state == '취소'}">
+								<td class="text-danger">${list.state}</td>
+							</c:when>
 						</c:choose>
 						<td>
-							<button type="button" class="btn btn-danger delBtn" data-booking-id="${list.id}">삭제</button>
+							<button type="button" class="btn btn-danger del-btn" data-booking-id="${list.id}">삭제</button>
 						</td>
 					</tr>
 					</c:forEach>
@@ -66,22 +69,25 @@
 	</div>
 <script>
 $(document).ready(function(e){
-	$(".delBtn").on('click', function(e){
-		let id = $(this).data("booking-id");
+	$(".del-btn").on('click', function(e){
+		let id = $(this).data("booking-id");//클릭된 하나의 버튼만 가지고 온다. $(this)
 		
 		$.ajax({
-			type:"POST"
+			type:"DELETE" //주로 get,post만 사용하지만 새로운 type이 있음
 			, url:"/booking/delete"
-			, data: {"id":id}
+			, data: {"id":id}//""안에 String으로 @RequestParam해서 꺼내는것임
 			, success: function(data){
 				if(data.result == 'success') {
+					//성공적으로 삭제된 후에 새로고침
 					location.reload();
-				}
+				} 
 			}
 			, error: function(e) {
 				alert("error");
 			}
 		});
+		
+		
 	});
 });
 </script>

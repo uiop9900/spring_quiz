@@ -3,7 +3,7 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="com.quiz.lesson06.dao.BookingDAO"> 
-	<select id="selectBookingList" resultType="com.quiz.lesson06.model.Booking">
+	<select id="selectBookingList" resultType="com.quiz.lesson06.model.Booking"><!-- 행 하나에 대한 정의 -> class 타입 넣어준다. -->
 		SELECT
 			`id`
 			,`name`
@@ -18,12 +18,12 @@
 			`booking`
 	</select>
 	
-	<delete id="deleteBooking" parameterType="int">
+	<delete id="deleteBookingById" parameterType="int">
 		DELETE
 		FROM 
 			`booking`
 		WHERE
-			id = #{id}
+			`id` = #{id}
 	</delete>
 	
 	<insert id="insertBooking" parameterType="map">
@@ -51,7 +51,7 @@
 		)
 	</insert>
 	
-	<select id="selectBookingReserve" parameterType="map" resultType="com.quiz.lesson06.model.Booking">
+	<select id="selectBookingByNameAndPhoneNumber" parameterType="map" resultType="com.quiz.lesson06.model.Booking">
 		SELECT
 		`id`
 			,`name`
@@ -66,8 +66,7 @@
 			`booking`
 		WHERE
 			`name` = #{name} 
-		AND
-			`phoneNumber` = #{phoneNumber}
+			AND	`phoneNumber` = #{phoneNumber}
 		
 	</select>
 </mapper>

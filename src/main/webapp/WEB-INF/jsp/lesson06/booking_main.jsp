@@ -61,21 +61,23 @@
 $(document).ready(function(e){
 		//3초마다 메인사진 변경
 		let mainImages = ["1.jpg", "2.jpg", "3.jpg", "4.jpg"]; 
-		let imagesIndex = 0;
+		let imagesIndex = 0; //배열을 가르키는 변수
 		
 		setInterval(function(e){
 			$("#images").attr("src" , "/images/test06_banner" + mainImages[imagesIndex]);
 			imagesIndex++;
 			if (imagesIndex > mainImages.length-1) { //4
 				imagesIndex = 0;
-			}
-		}, 3000);
+			} // 파라1: 함수 그 자체
+		}, 3000);//파라2: 얼마간격?
 
-		//조회하기
+		//조회하기 버튼 클릭 이벤트
 		$("#checkBtn").on('click', function(e){
 			let name = $("#name").val().trim();
 			let phoneNumber = $("#phoneNumber").val().trim();
 			
+			//받아온 값을 최대한 검증을 한 후 server에 보내는 게 좋다.
+			//validation check
 			if (name == "") {
 				alert("이름을 입력해주세요.");
 				return;
@@ -84,13 +86,34 @@ $(document).ready(function(e){
 				alert("전화번호를 입력해주세요.");
 				return;
 			}
+			if (phoneNumber.startsWith("010") == false) {
+				alert("010으로 시작하는 번호만 입력할 수 있습니다.");
+				return;
+			}	
+		
 			
 			$.ajax({
 				type: "POST"
 				,url:"/booking/check_reserve"
 				,data: {"name":name, "phoneNumber":phoneNumber}
 				,success: function(data){
-					if(Object.keys(data).length == 0) {
+					// {"result": "sucess", 	booking 그 자체를 통으로 담아서 넘긴다.
+					// "code":"1" 				-> 어떠한 형태로 json을 만들지는 개발자 마음대로이다.
+					// {"name":"이지아", "phoneNumber":"010-9973-5424"}}
+					if (data.code == 1) {
+						//성공 - 키를 가지고 하나씩 들어가면서 값을 추출한다.
+						//date 객체가 model로 내려가서 보여지면 kst~~어쩌구이고, json으로 변환되서 내려지면 년월일시분초어쩌구가 다 나온다. -> 어떻게 내려지냐에 따라 보여지는게 다르다.
+						let booking = data.booking;
+						let message = "이름: " + booking.name + "\n날짜: " + booking.date.substring(0,10) 
+									 + "\n일수: " + booking.day + "\n인원: " + booking.headcount 
+									 + "\n상태: " + booking.state
+						
+						alert(message);
+					} else {
+						alert("예약 내역이 없습니다.");
+					}
+					
+/* 					if(Object.keys(data).length == 0) {
 						alert("예약 내역이 없습니다.");
 					} else {
 						alert("이름: " + data.name
@@ -99,9 +122,9 @@ $(document).ready(function(e){
 								 + "\n인원: " + data.headcount 
 								 + "\n상태: " + data.state);
 					}
-				}
+				*/ } 
 				, error: function(e) {
-					alert("error");
+					alert("서버 통신 실패");
 				}
 			});
 
